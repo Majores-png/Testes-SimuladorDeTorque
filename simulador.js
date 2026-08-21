@@ -57,7 +57,7 @@ const inputDistanciaDireita =
 /* VALORES (VALORES INICIAIS, DA PARA MUDAR TAMBEM) */
 
 let forcaEsquerda = 10;
-let forcaDireita = 1;
+let forcaDireita = 10;
 
 let distanciaEsquerda = 1;
 let distanciaDireita = 1;

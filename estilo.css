@@ -128,7 +128,7 @@ body{
 
 .peso{
     position:absolute;
-    top:calc(50% - 166px);
+    top:calc(50% - 76px);
     width:68px;
     height:68px;
     transform:translateX(-50%);
