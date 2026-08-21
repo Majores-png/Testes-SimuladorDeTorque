@@ -1,0 +1,531 @@
+*{box-sizing:border-box}
+
+html,body{
+    margin:0;
+    min-height:100%;
+    height:100%;
+}
+
+body{
+    padding:10px 20px;
+    background:#f8fafc;
+    color:#1e293b;
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+/* CABEÇALHO */
+
+.cabecalho{
+    text-align:center;
+    margin-bottom:7px;
+}
+
+.cabecalho h1{
+    margin:0;
+    font-size:27px;
+}
+
+.cabecalho p{
+    margin:3px 0 0;
+    color:#64748b;
+    font-size:14px;
+}
+
+/* ESTRUTURA */
+
+.jogo{
+    width:min(1400px,96vw);
+    height:calc(100vh - 105px);
+    margin:auto;
+    display:grid;
+    grid-template-columns:minmax(500px,1.7fr) minmax(320px,.8fr);
+    gap:18px;
+    align-items:stretch;
+}
+
+/* GANGORRA */
+
+.area-gangorra{
+    min-width:0;
+}
+
+.arena{
+    position:relative;
+    width:100%;
+    height:calc(100% - 55px);
+    overflow:hidden;
+    background:#fff;
+    border:3px solid #dbe5ef;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(15,23,42,.12);
+}
+
+/* CHÃO */
+
+.chao{
+    display:none;
+}
+
+/* APOIO */
+
+.apoio{
+    position:absolute;
+    left:50%;
+    top:58%;
+    transform:translateX(-50%);
+    width:0;
+    height:0;
+    border-left:50px solid transparent;
+    border-right:50px solid transparent;
+    border-bottom:85px solid #475569;
+    z-index:3;
+}
+
+/* EIXO */
+
+.eixo{
+    position:absolute;
+    left:50%;
+    top:58%;
+    width:18px;
+    height:18px;
+    transform:translate(-50%,-50%);
+    background:#f8fafc;
+    border:4px solid #334155;
+    border-radius:50%;
+    z-index:10;
+}
+
+/* SISTEMA DA GANGORRA */
+
+.sistema-gangorra{
+    position:absolute;
+    left:50%;
+    top:58%;
+    width:82%;
+    height:200px;
+    transform:translate(-50%,-50%) rotate(0deg);
+    transform-origin:center center;
+    z-index:6;
+}
+
+/* MADEIRA/BARRA (a linha horizontal da gangorra) */
+
+.gangorra{
+    position:absolute;
+    left:0;
+    top:50%;
+    width:100%;
+    height:28px;
+    transform:translateY(-50%);
+    background:linear-gradient(to bottom,#f59e0b,#d97706);
+    border-radius:14px;
+    box-shadow:0 5px 8px rgba(0,0,0,.15);
+}
+
+/* PESOS */
+
+.peso{
+    position:absolute;
+    top:calc(50% - 62px);
+    width:68px;
+    height:68px;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:14px;
+    color:#fff;
+    font-size:14px;
+    font-weight:bold;
+    cursor:grab;
+    user-select:none;
+    touch-action:none;
+    z-index:20;
+    box-shadow:0 6px 12px rgba(0,0,0,.2);
+    opacity:1;
+}
+
+.peso:active{
+    cursor:grabbing;
+}
+
+.peso-esquerdo{
+    background:#2563eb;
+}
+
+.peso-direito{
+    background:#dc2626;
+}
+
+/* DISTÂNCIAS */
+
+.distancia{
+    position:absolute;
+    top:calc(50% + 45px);
+    height:0;
+    border-top:2px dashed currentColor;
+    z-index:15;
+    pointer-events:none;
+}
+
+.distancia::before,
+.distancia::after{
+    content:"";
+    position:absolute;
+    top:-25px;
+    width:2px;
+    height:25px;
+    background:currentColor;
+}
+
+.distancia::before{
+    left:0;
+}
+
+.distancia::after{
+    right:0;
+}
+
+.distancia span{
+    position:absolute;
+    top:-25px;
+    left:50%;
+    transform:translate(-50%,-50%);
+    padding:2px 7px;
+    border-radius:5px;
+    background:#fff;
+    font-size:14px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.distancia-esquerda{
+    color:#2563eb;
+}
+
+.distancia-direita{
+    color:#dc2626;
+}
+
+/* TEXTO */
+
+.texto-explicativo{
+    margin:7px 0 0;
+    text-align:center;
+    color:#475569;
+    font-size:16px;
+    font-weight:500;
+}
+
+/* PAINEL */
+
+.painel{
+    padding:12px;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 15px 35px rgba(15,23,42,.12);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    align-content:start;
+    min-height:0;
+}
+
+.painel-titulo,
+.mensagem,
+.resultados,
+.formula,
+.limites,
+.instrucao{
+    grid-column:1 / -1;
+}
+
+.painel-titulo h2{
+    margin:0;
+    font-size:19px;
+}
+
+.painel-titulo p{
+    margin:2px 0 0;
+    color:#64748b;
+    font-size:12px;
+}
+
+/* CARDS */
+
+.config-card{
+    padding:9px;
+    border-radius:11px;
+    border:2px solid;
+}
+
+.config-card.azul{
+    background:#eff6ff;
+    border-color:#bfdbfe;
+}
+
+.config-card.vermelho{
+    background:#fff1f2;
+    border-color:#fecaca;
+}
+
+.card-titulo{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-bottom:5px;
+}
+
+.card-titulo h3{
+    margin:0;
+    font-size:14px;
+}
+
+.card-titulo small{
+    color:#64748b;
+    font-size:10px;
+}
+
+.bolinha{
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    flex-shrink:0;
+}
+
+.bolinha.azul{
+    background:#2563eb;
+}
+
+.bolinha.vermelho{
+    background:#dc2626;
+}
+
+/* INPUTS */
+
+.config-card label{
+    display:block;
+    margin:4px 0 2px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.input-com-unidade{
+    display:flex;
+    align-items:center;
+    background:#fff;
+    border:2px solid #cbd5e1;
+    border-radius:7px;
+    overflow:hidden;
+}
+
+.input-com-unidade input{
+    width:100%;
+    padding:5px 7px;
+    border:0;
+    outline:none;
+    font-size:14px;
+    background:transparent;
+}
+
+.input-com-unidade span{
+    padding-right:7px;
+    color:#64748b;
+    font-weight:bold;
+    font-size:12px;
+}
+
+/* RESULTADOS */
+
+.resultados{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.resultados h3{
+    margin:0;
+    font-size:15px;
+}
+
+.resultado{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:6px 9px;
+    border-radius:7px;
+}
+
+.resultado span{
+    font-size:11px;
+}
+
+.resultado strong{
+    font-size:14px;
+}
+
+.torque-azul{
+    background:#eff6ff;
+    color:#1d4ed8;
+}
+
+.torque-vermelho{
+    background:#fff1f2;
+    color:#b91c1c;
+}
+
+.resultado.angulo{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.equilibrio{
+    padding:6px;
+    border-radius:7px;
+    background:#f1f5f9;
+    text-align:center;
+    font-size:11px;
+    font-weight:bold;
+}
+
+/* FÓRMULA */
+
+.formula{
+    padding:7px;
+    background:#0f172a;
+    color:#fff;
+    border-radius:8px;
+    text-align:center;
+}
+
+.formula strong{
+    display:block;
+    font-size:17px;
+}
+
+.formula span{
+    color:#cbd5e1;
+    font-size:10px;
+}
+
+/* LIMITES */
+
+.limites{
+    padding:6px;
+    background:#f1f5f9;
+    border-radius:7px;
+    color:#64748b;
+    text-align:center;
+    font-size:10px;
+    line-height:1.35;
+}
+
+/* INSTRUÇÃO */
+
+.instrucao{
+    padding:6px;
+    border-radius:7px;
+    background:#f8fafc;
+    color:#64748b;
+    font-size:10px;
+    text-align:center;
+    line-height:1.35;
+}
+
+/* MENSAGEM */
+
+.mensagem{
+    display:none;
+    padding:7px;
+    background:#fee2e2;
+    color:#991b1b;
+    border-radius:7px;
+    font-size:11px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.mensagem.visivel{
+    display:block;
+}
+
+/* TELAS MENORES */
+
+@media(max-width:1100px){
+
+    body{
+        overflow:auto;
+    }
+
+    .jogo{
+        height:auto;
+        grid-template-columns:1fr;
+    }
+
+    .arena{
+        height:500px;
+    }
+
+    .painel{
+        display:grid;
+    }
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:8px;
+        overflow:auto;
+    }
+
+    .cabecalho{
+        margin-bottom:8px;
+    }
+
+    .cabecalho h1{
+        font-size:23px;
+    }
+
+    .jogo{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .arena{
+        height:430px;
+        border-radius:16px;
+    }
+
+    .painel{
+        display:flex;
+        flex-direction:column;
+        padding:13px;
+        border-radius:16px;
+    }
+
+    .config-card{
+        padding:12px;
+    }
+
+    .sistema-gangorra{
+        width:90%;
+    }
+
+    .peso{
+        width:58px;
+        height:58px;
+        font-size:12px;
+    }
+
+    .distancia span{
+        font-size:13px;
+    }
+
+    .texto-explicativo{
+        font-size:14px;
+        margin-top:7px;
+    }
+}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Torque</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+<header class="cabecalho">
+    <h1>Simulador de Torque</h1>
+    <p>Gangorra</p>
+</header>
+
+<main class="jogo">
+
+
+<section class="area-gangorra">
+
+    <div class="arena" id="arena">
+
+        <div class="chao"></div>
+
+        <div class="sistema-gangorra" id="sistemaGangorra">
+
+            <div class="distancia distancia-esquerda" id="linhaDistanciaEsquerda">
+                <span>d1</span>
+            </div>
+
+            <div class="distancia distancia-direita" id="linhaDistanciaDireita">
+                <span>d2</span>
+            </div>
+
+            <div class="peso peso-esquerdo" id="pesoEsquerdo">
+                F1
+            </div>
+
+            <div class="peso peso-direito" id="pesoDireito">
+                F2
+            </div>
+
+            <div class="gangorra">
+                <div class="marca-esquerda"></div>
+                <div class="marca-direita"></div>
+            </div>
+
+        </div>
+
+        <div class="apoio"></div>
+
+        <div class="eixo">
+        </div>
+
+    </div>
+
+    <p class="texto-explicativo">
+        Altere o valor de d1 ou d2 para analisar a variação do valor do torque.
+    </p>
+
+</section>
+
+<aside class="painel">
+
+    <div class="painel-titulo">
+        <h2>Configuração</h2>
+        <p>Altere os valores e observe a gangorra.</p>
+    </div>
+
+    <div class="config-card azul">
+
+        <div class="card-titulo">
+            <span class="bolinha azul"></span>
+
+            <div>
+                <h3>Lado esquerdo</h3>
+                <small>Torque (T1)</small>
+            </div>
+        </div>
+
+        <label for="forcaEsquerdaInput">Força (F1)</label>
+
+        <div class="input-com-unidade">
+            <input
+                id="forcaEsquerdaInput"
+                type="number"
+                min="1"
+                max="50"
+                step="0.5"
+                value="10"
+            >
+            <span>N</span>
+        </div>
+
+        <label for="distanciaEsquerdaInput">Distância (d1)</label>
+
+        <div class="input-com-unidade">
+            <input
+                id="distanciaEsquerdaInput"
+                type="number"
+                min="0.5"
+                max="3"
+                step="0.1"
+                value="1"
+            >
+            <span>m</span>
+        </div>
+
+    </div>
+
+    <div class="config-card vermelho">
+
+        <div class="card-titulo">
+            <span class="bolinha vermelho"></span>
+
+            <div>
+                <h3>Lado direito</h3>
+                <small>Torque (T2)</small>
+            </div>
+        </div>
+
+        <label for="forcaDireitaInput">Força (F2)</label>
+
+        <div class="input-com-unidade">
+            <input
+                id="forcaDireitaInput"
+                type="number"
+                min="1"
+                max="50"
+                step="0.5"
+                value="1"
+            >
+            <span>N</span>
+        </div>
+
+        <label for="distanciaDireitaInput">Distância(d2)</label>
+
+        <div class="input-com-unidade">
+            <input
+                id="distanciaDireitaInput"
+                type="number"
+                min="0.5"
+                max="3"
+                step="0.1"
+                value="1"
+            >
+            <span>m</span>
+        </div>
+
+    </div>
+
+    <div class="mensagem" id="mensagem"></div>
+
+    <section class="resultados">
+
+        <h3>Resultados</h3>
+
+        <div class="resultado torque-azul">
+            <span>🔵 Torque (T1)</span>
+            <strong id="torqueEsquerdo">10,00 N·m</strong>
+        </div>
+
+        <div class="resultado torque-vermelho">
+            <span>🔴 Torque (T2)</span>
+            <strong id="torqueDireito">1,00 N·m</strong>
+        </div>
+
+        <div class="resultado angulo">
+            <span>Ângulo</span>
+            <strong id="angulo">-5,4°</strong>
+        </div>
+
+        <div class="equilibrio" id="equilibrio"></div>
+
+    </section>
+
+    <div class="formula">
+        <strong>τ = F . d</strong>
+        <span>Torque = Força . Distância</span>
+    </div>
+
+    <div class="limites">
+        Força: <strong>1–50 N</strong>
+        <br>
+        Distância: <strong>0,5–3 m</strong>
+        <br>
+        Ângulo: <strong>±20°</strong>
+    </div>
+
+    <div class="instrucao">
+        Você também pode
+        <strong>arrastar os blocos</strong>
+        para alterar a distância.
+    </div>
+
+</aside>
+
+</main>
+
+<script src="simulador.js"></script>
+
+</body>
+</html>
